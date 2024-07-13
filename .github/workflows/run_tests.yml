@@ -1,7 +1,16 @@
 name: Automated tsts
 
 on: 
-    push
+    workflow_dispatch:
+        inputs:
+            deployment_target:
+                description: Choose target
+                required: true
+                default:
+                # type: choice
+                # options:
+                #     - firs_test
+                #     - second_test
 
 jobs:
     test: 
@@ -20,4 +29,6 @@ jobs:
               run: pip install -r requirements.txt
             - name: Run tests
               run: pytest
+            # - name: Run tests
+            #   run: pytest
         
