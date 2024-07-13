@@ -1,7 +1,10 @@
 name: Automated tsts
 
-on: 
-    workflow_dispatch:
+on:
+    workflow_run:
+      workflows: [Run Tests]
+      types:
+        - completed
         
 
 jobs:
