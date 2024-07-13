@@ -1,10 +1,7 @@
 name: Automated tsts
 
 on:
-    workflow_run:
-      workflows: [Run Tests]
-      types:
-        - completed
+    workflow_dispatch:
         
 
 jobs:
@@ -22,8 +19,7 @@ jobs:
               run: sudo apt-get install google-chrome-stable
             - name: install dependencies
               run: pip install -r requirements.txt
-            - name: all_test
-              run: pytest
-            # - name: Run tests
-            #   run: pytest
+            - name: Run tests with pytest
+              run: |
+                pytest
         
