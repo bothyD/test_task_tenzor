@@ -7,9 +7,9 @@ on:
                 description: Choose target
                 required: true
                 default:
-                # type: choice
-                # options:
-                #     - firs_test
+                type: choice
+                options:
+                    - all_test
                 #     - second_test
 
 jobs:
@@ -27,7 +27,7 @@ jobs:
               run: sudo apt-get install google-chrome-stable
             - name: install dependencies
               run: pip install -r requirements.txt
-            - name: Run tests
+            - name: all_test
               run: pytest
             # - name: Run tests
             #   run: pytest
