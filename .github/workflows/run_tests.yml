@@ -2,15 +2,7 @@ name: Automated tsts
 
 on: 
     workflow_dispatch:
-        inputs:
-            deployment_target:
-                description: Choose target
-                required: true
-                default:
-                type: choice
-                options:
-                    - all_test
-                #     - second_test
+        
 
 jobs:
     test: 
