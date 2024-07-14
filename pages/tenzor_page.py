@@ -48,10 +48,12 @@ class StartPage(BasePage):
         return block_is_displayed.is_displayed()
     
     def check_width_hight(self):
+        wait = WebDriverWait(self.browser, 10)
+        wait.until(EC.presence_of_element_located(block_about))
         find_block_about = self.find(block_about)
         click_block_about = self.find_element_from_block(find_block_about, button_about)
         self.browser.execute_script("arguments[0].click();", click_block_about)
-        wait = WebDriverWait(self.browser, 10)
+        
         wait.until(EC.presence_of_element_located(block_work))
         find_block_work = self.find(block_work)
         all_images = self.find_element_from_block(find_block_work, block_images)

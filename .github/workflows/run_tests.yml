@@ -2,6 +2,17 @@ name: Automated tests
 
 on:
     workflow_dispatch:
+      inputs:
+        deployment_target:
+          description: Choose promt
+          required: true
+          default:
+          type: choice
+          options:
+            - first_promt
+            - second_promt
+            - third_promt
+
         
 
 jobs:
@@ -19,8 +30,12 @@ jobs:
               run: sudo apt-get install google-chrome-stable
             - name: install dependencies
               run: pip install -r requirements.txt
-            - name: Run tests with pytest
-              if: github.token
-              run: |
-                pytest
-        
+            - name: first_promt
+              if: 'github.event.inputs.deployment_target == "first_promt"'
+              run: pytest -m promt1
+            - name: second_promt
+              if: 'github.event.inputs.deployment_target == "second_promt"'
+              run: pytest -m promt2
+            - name: third_promt
+              if: 'github.event.inputs.deployment_target == "third_promt"'
+              run: pytest -m promt3
