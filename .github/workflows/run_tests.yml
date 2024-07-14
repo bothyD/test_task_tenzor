@@ -6,7 +6,7 @@ on:
         deployment_target:
           description: Choose promt
           required: true
-          default:
+          default: first_promt  
           type: choice
           options:
             - first_promt
@@ -30,12 +30,15 @@ jobs:
               run: sudo apt-get install google-chrome-stable
             - name: install dependencies
               run: pip install -r requirements.txt
-            - name: first_promt
-              if: 'github.event.inputs.deployment_target == "first_promt"'
-              run: pytest -m promt1
-            - name: second_promt
-              if: 'github.event.inputs.deployment_target == "second_promt"'
-              run: pytest -m promt2
-            - name: third_promt
-              if: 'github.event.inputs.deployment_target == "third_promt"'
-              run: pytest -v -s -m "not promt2 and not promt1"
+            - name: Run tests based on deployment_target
+              run: |
+                if [ "${{ github.event.inputs.deployment_target }}" == "first_promt" ]; then
+                  pytest -m promt1
+                elif [ "${{ github.event.inputs.deployment_target }}" == "second_promt" ]; then
+                  pytest -m promt2
+                elif [ "${{ github.event.inputs.deployment_target }}" == "third_promt" ]; then
+                  pytest -v -s -m "not promt1 and not promt2"
+                else
+                  echo "Invalid deployment_target specified"
+                  exit 1
+                fi
