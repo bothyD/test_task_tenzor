@@ -37,7 +37,7 @@ jobs:
                 elif [ "${{ github.event.inputs.deployment_target }}" == "second_promt" ]; then
                   pytest -m promt2
                 elif [ "${{ github.event.inputs.deployment_target }}" == "third_promt" ]; then
-                  pytest -v -s -m "not promt1 and not promt2"
+                  pytest -m "not promt1 and not promt2"
                 else
                   echo "Invalid deployment_target specified"
                   exit 1

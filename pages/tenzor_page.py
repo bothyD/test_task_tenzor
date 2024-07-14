@@ -24,13 +24,15 @@ class StartPage(BasePage):
         self.browser.get(link)
 
     def button_contacts(self):
+        wait = WebDriverWait(self.browser, 20)
+        wait.until(EC.presence_of_element_located(button_contact))
         return self.find(button_contact)
     
     def button_contacts_click(self):
         return self.button_contacts().click()
     
     def button_tenzor_link(self):
-        wait = WebDriverWait(self.browser, 10)
+        wait = WebDriverWait(self.browser, 20)
         wait.until(EC.presence_of_element_located(button_tensor))
         return self.find(button_tensor)
     
@@ -44,11 +46,13 @@ class StartPage(BasePage):
         self.open(self.link_tenzor_click())
 
     def block_power_of_people_is_displayed(self):
+        wait = WebDriverWait(self.browser, 20)
+        wait.until(EC.presence_of_element_located(block_power_of_people))
         block_is_displayed = self.find(block_power_of_people)
         return block_is_displayed.is_displayed()
     
     def check_width_hight(self):
-        wait = WebDriverWait(self.browser, 10)
+        wait = WebDriverWait(self.browser, 20)
         wait.until(EC.presence_of_element_located(block_about))
         find_block_about = self.find(block_about)
         click_block_about = self.find_element_from_block(find_block_about, button_about)

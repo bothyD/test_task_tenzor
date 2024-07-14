@@ -24,6 +24,8 @@ class SibsPage(BasePage):
         self.browser.get(link)
 
     def button_contacts(self):
+        wait = WebDriverWait(self.browser, 15)
+        wait.until(EC.presence_of_element_located(button_contact))
         return self.find(button_contact)
     
     def button_contacts_click(self):
@@ -32,13 +34,16 @@ class SibsPage(BasePage):
     def go_to_contacts(self):
         self.open('https://sbis.ru/')
         self.button_contacts_click()
-        wait = WebDriverWait(self.browser, 10)
+        wait = WebDriverWait(self.browser, 15)
         wait.until(EC.presence_of_element_located(block_region))
 
     def change_region(self):
         self.go_to_contacts()
         currentRegion = self.find(block_region)
         self.find_element_from_block(currentRegion, region_class).click()
+
+        wait = WebDriverWait(self.browser, 15)
+        wait.until(EC.presence_of_element_located(block_regions))
         regions = self.find(block_regions)
         all_regions = self.find_elements_from_block(regions, lisst_regions)
         for el in all_regions:
