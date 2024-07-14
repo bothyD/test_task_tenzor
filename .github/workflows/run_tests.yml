@@ -38,4 +38,4 @@ jobs:
               run: pytest -m promt2
             - name: third_promt
               if: 'github.event.inputs.deployment_target == "third_promt"'
-              run: pytest -m promt3
+              run: pytest -v -s -m "not promt2 and not promt1"
